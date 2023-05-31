@@ -1,6 +1,6 @@
 package me.creepinson.plugin;
 
-import me.creepinson.plugin.command.ExampleCommand;
+import me.creepinson.plugin.command.Status;
 import me.creepinson.plugin.listener.ExampleListener;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -17,7 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Template extends JavaPlugin {
 
     // Feel free to change this to your own plugin's name and color of your choice.
-    public static final String CHAT_PREFIX = ChatColor.AQUA + "Template Plugin";
+    public static final String CHAT_PREFIX = ChatColor.AQUA + "[Time]";
 
     private static Template plugin; // This is a static plugin instance that is private. Use getPlugin() as seen
     // further below.
@@ -46,7 +46,7 @@ public class Template extends JavaPlugin {
          * command, it won't work! Also if you change the command name, make sure to
          * also change in the plugin.yml file.
          */
-        this.getCommand("example").setExecutor(new ExampleCommand());
+        this.getCommand("status").setExecutor(new Status());
 
         /*
          * Make sure you register your listeners if you have any! If you have a class

@@ -1,7 +1,7 @@
 main: me.creepinson.plugin.Template
-name: TemplatePlugin
-author: Creepinson
+name: TimeSmp
+author: IK_Knight
 version: 1.0.0
 commands:
-    example:
+    status:
         description: An example command...

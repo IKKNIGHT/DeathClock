@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import static me.creepinson.plugin.Template.CHAT_PREFIX;
 
 // All command classes need to implement the CommandExecutor interface to be a proper command!
-public class ExampleCommand implements CommandExecutor {
+public class Status implements CommandExecutor {
 
     /* Called when the command is ran
     args variable is the commands arguments in an array of strings.
@@ -24,7 +24,7 @@ public class ExampleCommand implements CommandExecutor {
 		   if unwanted. 
 		*/
         if (sender instanceof ConsoleCommandSender) {
-            sender.sendMessage(CHAT_PREFIX + ChatColor.WHITE + " > " + ChatColor.RED + "You cannot run this command from the console!");
+            sender.sendMessage(CHAT_PREFIX + ChatColor.WHITE + " > " + ChatColor.DARK_RED + "You cannot run this command from the console! Bozo admin get dunked on");
             return false;
         }
         /*
@@ -35,26 +35,11 @@ public class ExampleCommand implements CommandExecutor {
 
         // checks if there are no arguments at all (/command)
         if (args.length == 0) {
-            player.sendMessage(CHAT_PREFIX + ChatColor.WHITE + " > " + ChatColor.RED + "Invalid usage - there are no arguments.");
-            return false;
-        }
-
-        /*
-         * checks if First argument (/command FIRSTARGUMENT) is equal to the string In
-         * this case, the command would be: /example sayhi
-         */
-        if (args[0].equalsIgnoreCase("sayhi")) {
-
-            /*
-             * makes the player chat the message, Hello Everyone! colored light green.
-             */
-            player.chat(ChatColor.GREEN + "Hello Everyone!");
-
+            player.sendMessage(CHAT_PREFIX + ChatColor.WHITE + " > " + ChatColor.GREEN + "UP!");
             return true;
-        } else {
-            player.sendMessage(CHAT_PREFIX + ChatColor.WHITE + " > " + ChatColor.RED + "Invalid usage or arguments.");
-            return false;
         }
+        player.sendMessage(CHAT_PREFIX + ChatColor.WHITE + " > " + ChatColor.DARK_RED + "Some wierd error happened, I have no idea how to fix it either lmao do /status");
+        return false;
     }
 
 }
