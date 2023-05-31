@@ -1,7 +1,10 @@
-main: me.creepinson.plugin.Template
+main: me.creepinson.plugin.Main
 name: TimeSmp
 author: IK_Knight
 version: 1.0.0
 commands:
     status:
-        description: An example command...
+        description: checks if plugin is sober or not
+# THANK YOU CREEPINSON FOR THE FREE CODE
+#+15 social credit
+# © your mom

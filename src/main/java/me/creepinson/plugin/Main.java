@@ -1,7 +1,6 @@
 package me.creepinson.plugin;
 
 import me.creepinson.plugin.command.Status;
-import me.creepinson.plugin.listener.ExampleListener;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
@@ -14,23 +13,23 @@ import org.bukkit.plugin.java.JavaPlugin;
  * in any of your plugins! This template includes a few utilities made
  * both by me, and some other programmers out there.
  */
-public class Template extends JavaPlugin {
+public class Main extends JavaPlugin {
 
     // Feel free to change this to your own plugin's name and color of your choice.
     public static final String CHAT_PREFIX = ChatColor.AQUA + "[Time]";
 
-    private static Template plugin; // This is a static plugin instance that is private. Use getPlugin() as seen
+    private static Main plugin; // This is a static plugin instance that is private. Use getPlugin() as seen
     // further below.
 
     PluginDescriptionFile pdfFile; // plugin.yml
 
     public void onDisable() {
-        plugin = getPlugin(Template.class);
+        plugin = getPlugin(Main.class);
         this.pdfFile = getDescription();
 
     }
 
-    public static Template getPlugin() { // getter for the static plugin instance
+    public static Main getPlugin() { // getter for the static plugin instance
         return plugin;
     }
 
@@ -53,7 +52,6 @@ public class Template extends JavaPlugin {
          * that implements Listener, you need to make sure to register it. Otherwise it
          * will DO NOTHING!
          */
-        pm.registerEvents(new ExampleListener(), this);
 
         /*
          * This line lets you send out information to the console. In this case it would
