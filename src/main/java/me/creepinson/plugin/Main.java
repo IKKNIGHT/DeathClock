@@ -17,6 +17,7 @@ public class Main extends JavaPlugin {
 
     // Feel free to change this to your own plugin's name and color of your choice.
     public static final String CHAT_PREFIX = ChatColor.AQUA + "[Time]";
+    public static final String DIALOG = Main.CHAT_PREFIX + ChatColor.WHITE + " > ";
 
     private static Main plugin; // This is a static plugin instance that is private. Use getPlugin() as seen
     // further below.
