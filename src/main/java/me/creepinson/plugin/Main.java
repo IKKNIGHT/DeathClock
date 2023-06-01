@@ -1,10 +1,18 @@
 package me.creepinson.plugin;
 
 import me.creepinson.plugin.command.Status;
+import me.creepinson.plugin.listener.PlayerDeath;
+import me.creepinson.plugin.listener.PlayerJoined;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.BanList;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import static me.creepinson.plugin.utils.DeathClockUtils.hasExpired;
 
 /**
  * @author Creepinson101
@@ -16,7 +24,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin {
 
     // Feel free to change this to your own plugin's name and color of your choice.
-    public static final String CHAT_PREFIX = ChatColor.AQUA + "[Time]";
+    public static final String CHAT_PREFIX = ChatColor.RED + "[Death Clock]";
     public static final String DIALOG = Main.CHAT_PREFIX + ChatColor.WHITE + " > ";
 
     private static Main plugin; // This is a static plugin instance that is private. Use getPlugin() as seen
@@ -53,13 +61,33 @@ public class Main extends JavaPlugin {
          * that implements Listener, you need to make sure to register it. Otherwise it
          * will DO NOTHING!
          */
-
+        this.getServer().getPluginManager().registerEvents(new PlayerJoined(), this);
+        this.getServer().getPluginManager().registerEvents(new PlayerDeath(), this);
         /*
          * This line lets you send out information to the console. In this case it would
          * say: Template-Plugin - Version 1.0.0 - has been enabled!
          */
         this.getLogger()
                 .info(this.pdfFile.getName() + " - Version " + this.pdfFile.getVersion() + " - has been enabled!");
+
+        // run code as long as server active
+        int timeInSeconds = 10;
+        int timeInTicks = 20 * timeInSeconds;
+        new BukkitRunnable() {
+
+            @Override
+            public void run() {
+                //The code inside will be executed in {timeInTicks} ticks.
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    if(hasExpired(p)){
+                        Bukkit.getBanList(BanList.Type.NAME).addBan(String.valueOf(p.getUniqueId()), "Clock Ran Out", null, null);
+                    }
+                }
+            }
+        }.runTaskTimer(plugin, 1,timeInTicks);   // Your plugin instance, the time to be delayed.
+
+
+
     }
 
 }

@@ -1,5 +1,5 @@
 main: me.creepinson.plugin.Main
-name: TimeSmp
+name: DeathClock
 author: IK_Knight
 version: 1.0.0
 commands:
