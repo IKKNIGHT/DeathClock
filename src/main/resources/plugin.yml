@@ -1,7 +1,7 @@
 main: me.creepinson.plugin.Main
 name: DeathClock
 author: IK_Knight
-version: 1.0.0
+version: 1.0.1
 commands:
     status:
         description: checks if plugin is sober or not

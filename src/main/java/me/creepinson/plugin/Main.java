@@ -80,7 +80,7 @@ public class Main extends JavaPlugin {
                 .info(this.pdfFile.getName() + " - Version " + this.pdfFile.getVersion() + " - has been enabled!");
 
         // run code as long as server active
-        int timeInSeconds = 10;
+        int timeInSeconds = 1;
         int timeInTicks = 20 * timeInSeconds;
         new BukkitRunnable() {
 
@@ -104,7 +104,7 @@ public class Main extends JavaPlugin {
                 }
 
             }
-        }.runTaskTimer(plugin, 1,timeInTicks);   // Your plugin instance, the time to be delayed.
+        }.runTaskTimer(plugin, 1,timeInTicks);   // every 20 ticks we do this!! AKA 1 second
 
 
 
