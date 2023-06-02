@@ -1,9 +1,12 @@
 package me.creepinson.plugin;
 
+import me.creepinson.plugin.command.GetTime;
 import me.creepinson.plugin.command.Status;
 import me.creepinson.plugin.listener.PlayerDeath;
 import me.creepinson.plugin.listener.PlayerJoined;
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -12,6 +15,11 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+
+import static me.creepinson.plugin.utils.DeathClockUtils.getTime;
 import static me.creepinson.plugin.utils.DeathClockUtils.hasExpired;
 
 /**
@@ -24,7 +32,7 @@ import static me.creepinson.plugin.utils.DeathClockUtils.hasExpired;
 public class Main extends JavaPlugin {
 
     // Feel free to change this to your own plugin's name and color of your choice.
-    public static final String CHAT_PREFIX = ChatColor.RED + "[Death Clock]";
+    public static final String CHAT_PREFIX = ChatColor.BLACK + "[Death Clock]";
     public static final String DIALOG = Main.CHAT_PREFIX + ChatColor.WHITE + " > ";
 
     private static Main plugin; // This is a static plugin instance that is private. Use getPlugin() as seen
@@ -55,6 +63,7 @@ public class Main extends JavaPlugin {
          * also change in the plugin.yml file.
          */
         this.getCommand("status").setExecutor(new Status());
+        this.getCommand("time").setExecutor(new GetTime());
 
         /*
          * Make sure you register your listeners if you have any! If you have a class
@@ -82,7 +91,18 @@ public class Main extends JavaPlugin {
                     if(hasExpired(p)){
                         Bukkit.getBanList(BanList.Type.NAME).addBan(String.valueOf(p.getUniqueId()), "Clock Ran Out", null, null);
                     }
+                    // set actionbar
+                    Long Frt = Instant.now().until(getTime(p), ChronoUnit.MILLIS);
+                    Duration duration = Duration.ofMillis(Frt);
+
+                    long h = duration.toHours();
+                    long m = duration.toMinutes() % 60;
+                    long s = duration.getSeconds() % 60;
+
+                    String timeInHms = String.format("%02d:%02d:%02d", h, m, s);
+                    p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(timeInHms));
                 }
+
             }
         }.runTaskTimer(plugin, 1,timeInTicks);   // Your plugin instance, the time to be delayed.
 

@@ -5,6 +5,10 @@ version: 1.0.0
 commands:
     status:
         description: checks if plugin is sober or not
+    time:
+        description: checks how much time you have
+
+
 # THANK YOU CREEPINSON FOR THE FREE CODE
 #+15 social credit
 # © your mom

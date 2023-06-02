@@ -52,4 +52,11 @@ public class DeathClockUtils {
         pdc.set(key, PersistentDataType.LONG, expires.toEpochMilli());
     }
 
+    public static Instant getTime(Player player) {
+
+        PersistentDataContainer pdc = player.getPersistentDataContainer();
+        Instant expires = Instant.ofEpochMilli(pdc.getOrDefault(key, PersistentDataType.LONG, Instant.now().toEpochMilli()));
+        return expires;
+    }
+
 }
