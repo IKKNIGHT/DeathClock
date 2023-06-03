@@ -36,7 +36,7 @@ public class DeathClockUtils {
 
         PersistentDataContainer pdc = player.getPersistentDataContainer();
         Instant expires = Instant.ofEpochMilli(pdc.getOrDefault(key, PersistentDataType.LONG, Instant.now().toEpochMilli()));
-        expires.plus(hours, ChronoUnit.HOURS);
+        expires = expires.plus(hours, ChronoUnit.HOURS);
         pdc.set(key, PersistentDataType.LONG, expires.toEpochMilli());
     }
 
@@ -50,7 +50,7 @@ public class DeathClockUtils {
 
         PersistentDataContainer pdc = player.getPersistentDataContainer();
         Instant expires = Instant.ofEpochMilli(pdc.getOrDefault(key, PersistentDataType.LONG, Instant.now().toEpochMilli()));
-        expires.minus(hours, ChronoUnit.HOURS);
+        expires = expires.minus(hours, ChronoUnit.HOURS);
         pdc.set(key, PersistentDataType.LONG, expires.toEpochMilli());
     }
 

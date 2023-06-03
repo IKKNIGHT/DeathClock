@@ -1,6 +1,6 @@
 main: me.creepinson.plugin.Main
 name: DeathClock
-author: IK_Knight
+author: IK_Knight, ElgarL
 version: 1.0.1
 commands:
     status:
@@ -9,6 +9,4 @@ commands:
         description: checks how much time you have
 
 
-# THANK YOU CREEPINSON FOR THE FREE CODE
-#+15 social credit
-# © your mom
+# MAD THANKS TO ELGARL!!!!

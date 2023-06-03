@@ -22,7 +22,7 @@ public class PlayerDeath implements Listener {
         if (n instanceof Player){
                 Player np  = (Player) n;
                 addTime(np,1);
-                p.sendMessage(DIALOG+ChatColor.GREEN + "You killed someone, you get 1 Hour!");
+                np.sendMessage(DIALOG+ChatColor.GREEN + "You killed someone, you get 1 Hour!");
         }
     }
 }
