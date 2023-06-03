@@ -1,4 +1,5 @@
 package me.creepinson.plugin.listener;
+import me.creepinson.plugin.Main;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -9,6 +10,7 @@ import org.bukkit.event.Listener;
 
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -22,7 +24,7 @@ import static net.md_5.bungee.api.ChatMessageType.ACTION_BAR;
 
 
 public class PlayerJoined implements Listener {
-    public static NamespacedKey key = new NamespacedKey(getPlugin(), "death_clock");
+    public static NamespacedKey key = new NamespacedKey(JavaPlugin.getProvidingPlugin(Main.class), "death_clock");
     @EventHandler
     public void PlayerJoinEvent(PlayerJoinEvent event) {
         Player p = event.getPlayer();

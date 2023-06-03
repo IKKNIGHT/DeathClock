@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="SpigotPluginTemplate:jar">
+    <output-path>$USER_HOME$/Documents/McPlugins</output-path>
+    <root id="archive" name="SpigotPluginTemplate.jar">
+      <element id="module-output" name="SpigotPluginTemplate" />
+    </root>
+  </artifact>
+</component>

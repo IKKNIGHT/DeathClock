@@ -104,7 +104,7 @@ public class Main extends JavaPlugin {
                 }
 
             }
-        }.runTaskTimer(plugin, 1,timeInTicks);   // every 20 ticks we do this!! AKA 1 second
+        }.runTaskTimer(JavaPlugin.getPlugin(Main.class), 1,timeInTicks);   // every 20 ticks we do this!! AKA 1 second
 
 
 

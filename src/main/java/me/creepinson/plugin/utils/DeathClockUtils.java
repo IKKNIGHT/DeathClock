@@ -11,9 +11,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
+import static me.creepinson.plugin.Main.getPlugin;
+
 public class DeathClockUtils {
     private static NamespacedKey key = new NamespacedKey(JavaPlugin.getProvidingPlugin(Main.class), "death_clock");
-    static PlayerJoined pj= new PlayerJoined();
+
     public static boolean hasExpired(Player player) {
 
         Instant expired = Instant.ofEpochMilli(player.getPersistentDataContainer().get(PlayerJoined.key, PersistentDataType.LONG));
