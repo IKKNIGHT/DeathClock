@@ -17,12 +17,14 @@ public class PlayerDeath implements Listener {
     public void PlayerDeathEvent(PlayerDeathEvent event) {
         Player p = event.getEntity();
         subtractTime(p, 1);
-        p.sendMessage(DIALOG+ ChatColor.DARK_RED +"You Died... this means you have lost one hour of your life!");
+        p.sendMessage(DIALOG + ChatColor.DARK_RED + "You Died... this means you have lost one hour of your life!");
         Entity n = event.getEntity().getKiller();
-        if (n instanceof Player){
-                Player np  = (Player) n;
-                addTime(np,1);
-                np.sendMessage(DIALOG+ChatColor.GREEN + "You killed someone, you get 1 Hour!");
+        if (n instanceof Player) {
+            Player np = (Player) n;
+            if (!np.equals(p)) { // check if suicide kill
+                addTime(np, 1);
+                np.sendMessage(DIALOG + ChatColor.GREEN + "You killed someone, you get 1 Hour!");
+            }
         }
     }
 }

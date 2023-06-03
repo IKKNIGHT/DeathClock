@@ -88,7 +88,7 @@ public class Main extends JavaPlugin {
             public void run() {
                 //The code inside will be executed in {timeInTicks} ticks.
                 for (Player p : Bukkit.getOnlinePlayers()) {
-                    if(hasExpired(p)){
+                    if (hasExpired(p)) {
                         Bukkit.getBanList(BanList.Type.NAME).addBan(String.valueOf(p.getUniqueId()), "Clock Ran Out", null, null);
                     }
                     // set actionbar
@@ -104,8 +104,7 @@ public class Main extends JavaPlugin {
                 }
 
             }
-        }.runTaskTimer(JavaPlugin.getPlugin(Main.class), 1,timeInTicks);   // every 20 ticks we do this!! AKA 1 second
-
+        }.runTaskTimer(JavaPlugin.getPlugin(Main.class), 1, timeInTicks);   // every 20 ticks we do this!! AKA 1 second
 
 
     }

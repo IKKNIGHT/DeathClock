@@ -1,4 +1,5 @@
 package me.creepinson.plugin.listener;
+
 import me.creepinson.plugin.Main;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
@@ -24,16 +25,16 @@ import static net.md_5.bungee.api.ChatMessageType.ACTION_BAR;
 
 
 public class PlayerJoined implements Listener {
-    public static NamespacedKey key = new NamespacedKey(JavaPlugin.getProvidingPlugin(Main.class), "death_clock");
+
     @EventHandler
     public void PlayerJoinEvent(PlayerJoinEvent event) {
         Player p = event.getPlayer();
-        if(!p.hasPlayedBefore()){
+        if (!p.hasPlayedBefore()) {
             p.sendMessage(DIALOG + ChatColor.GREEN + "Welcome to the server!");
             // set time
-            setClock(p,10);
+            setClock(p, 10);
 
-        }else{
+        } else {
             p.sendMessage(DIALOG + ChatColor.GREEN + "Welcome Back!");
         }
         // add actionbar titles

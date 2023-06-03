@@ -18,20 +18,22 @@ public class DeathClockUtils {
 
     public static boolean hasExpired(Player player) {
 
-        Instant expired = Instant.ofEpochMilli(player.getPersistentDataContainer().get(PlayerJoined.key, PersistentDataType.LONG));
+        Instant expired = Instant.ofEpochMilli(player.getPersistentDataContainer().get(key, PersistentDataType.LONG));
         return Instant.now().isAfter(expired);
     }
+
     /**
      * Set the initial Death Clock on this player.
      *
      * @param player the Player to set the Death Clock on.
-     * @param hours the hours from now for the Death Clock.
+     * @param hours  the hours from now for the Death Clock.
      */
     public static void setClock(Player player, long hours) {
 
         Instant expires = Instant.now().plus(hours, ChronoUnit.HOURS);
         player.getPersistentDataContainer().set(key, PersistentDataType.LONG, expires.toEpochMilli());
     }
+
     public static void addTime(Player player, long hours) {
 
         PersistentDataContainer pdc = player.getPersistentDataContainer();
@@ -44,7 +46,7 @@ public class DeathClockUtils {
      * Subtract time from a Players Deathclock.
      *
      * @param player the Player to remove time from.
-     * @param hours the number of hours to remove.
+     * @param hours  the number of hours to remove.
      */
     public static void subtractTime(Player player, long hours) {
 

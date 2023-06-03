@@ -3,10 +3,10 @@ name: DeathClock
 author: IK_Knight, ElgarL
 version: 1.0.1
 commands:
-    status:
-        description: checks if plugin is sober or not
-    time:
-        description: checks how much time you have
+  status:
+    description: checks if plugin is sober or not
+  time:
+    description: checks how much time you have
 
 
 # MAD THANKS TO ELGARL!!!!
