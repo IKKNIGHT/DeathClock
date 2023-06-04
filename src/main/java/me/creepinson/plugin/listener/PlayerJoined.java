@@ -19,8 +19,7 @@ import java.time.temporal.ChronoUnit;
 
 import static me.creepinson.plugin.Main.DIALOG;
 import static me.creepinson.plugin.Main.getPlugin;
-import static me.creepinson.plugin.utils.DeathClockUtils.getTime;
-import static me.creepinson.plugin.utils.DeathClockUtils.setClock;
+import static me.creepinson.plugin.utils.DeathClockUtils.*;
 import static net.md_5.bungee.api.ChatMessageType.ACTION_BAR;
 
 
@@ -36,6 +35,7 @@ public class PlayerJoined implements Listener {
 
         } else {
             p.sendMessage(DIALOG + ChatColor.GREEN + "Welcome Back!");
+            resumeTime(p);
         }
         // add actionbar titles
         Long Frt = Instant.now().until(getTime(p), ChronoUnit.MILLIS);

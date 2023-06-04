@@ -5,6 +5,7 @@ import me.creepinson.plugin.command.GiveTime;
 import me.creepinson.plugin.command.Status;
 import me.creepinson.plugin.listener.PlayerDeath;
 import me.creepinson.plugin.listener.PlayerJoined;
+import me.creepinson.plugin.listener.PlayerLeft;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -78,6 +79,7 @@ public class Main extends JavaPlugin {
          */
         this.getServer().getPluginManager().registerEvents(new PlayerJoined(), this);
         this.getServer().getPluginManager().registerEvents(new PlayerDeath(), this);
+        this.getServer().getPluginManager().registerEvents(new PlayerLeft(),this);
         /*
          * This line lets you send out information to the console. In this case it would
          * say: Template-Plugin - Version 1.0.0 - has been enabled!
@@ -95,7 +97,7 @@ public class Main extends JavaPlugin {
                 //The code inside will be executed in {timeInTicks} ticks.
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     if (hasExpired(p)) {
-                        p.kickPlayer("Your time has expired! DO NOT LOG ON UNLESS SOMEONE IS GOING TO GIVE YOU TIME!!! OTHER WISE YOUR TIME WILL KEEP ON DECREASING!!!!");
+                        p.sendMessage("Your time has expired! DO NOT LOG ON UNLESS SOMEONE IS GOING TO GIVE YOU TIME!!! OTHER WISE YOUR TIME WILL KEEP ON DECREASING!!!!");
                         p.setGameMode(org.bukkit.GameMode.SPECTATOR);
                         p.addPotionEffect(new org.bukkit.potion.PotionEffect(org.bukkit.potion.PotionEffectType.BLINDNESS, 1000000, 1000000));
                     }
@@ -112,7 +114,7 @@ public class Main extends JavaPlugin {
                 }
 
             }
-        }.runTaskTimer(JavaPlugin.getPlugin(Main.class), 1, timeInTicks);   // every 20 ticks we do this!! AKA 1 second
+        }.runTaskTimer(JavaPlugin.getPlugin(Main.class), 10, timeInTicks);   // every 20 ticks we do this!! AKA 1 second
 
 
     }
