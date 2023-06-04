@@ -1,6 +1,7 @@
 package me.creepinson.plugin;
 
 import me.creepinson.plugin.command.GetTime;
+import me.creepinson.plugin.command.GiveTime;
 import me.creepinson.plugin.command.Status;
 import me.creepinson.plugin.listener.PlayerDeath;
 import me.creepinson.plugin.listener.PlayerJoined;
@@ -9,6 +10,7 @@ import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
+import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
@@ -62,6 +64,13 @@ public class Main extends JavaPlugin {
          * command, it won't work! Also if you change the command name, make sure to
          * also change in the plugin.yml file.
          */
+        //create a voidless worldcreator
+
+        // create another world which is voidless
+
+
+
+        this.getCommand("givetime").setExecutor(new GiveTime());
         this.getCommand("status").setExecutor(new Status());
         this.getCommand("time").setExecutor(new GetTime());
 
@@ -89,6 +98,8 @@ public class Main extends JavaPlugin {
                 //The code inside will be executed in {timeInTicks} ticks.
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     if (hasExpired(p)) {
+                        // put players in another world
+
                         Bukkit.getBanList(BanList.Type.NAME).addBan(String.valueOf(p.getUniqueId()), "Clock Ran Out", null, null);
                     }
                     // set actionbar
