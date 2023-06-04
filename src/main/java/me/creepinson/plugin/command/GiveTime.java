@@ -32,7 +32,7 @@ public class GiveTime implements CommandExecutor {
         // create code to give player time in hours using addTime method from DeathClockUtils
         if (args.length == 2) {
             Player target = player.getServer().getPlayer(args[0]);
-            // player dose not have to be online
+            // player does not have to be online
             if (target == null) {
                 player.sendMessage(DIALOG + ChatColor.RED + "Player not found! They Have to be online to give them time!");
                 return true;
@@ -40,6 +40,11 @@ public class GiveTime implements CommandExecutor {
             Long Frt = Instant.now().until(getTime(player), ChronoUnit.MILLIS);
             long h = Frt / 3600000;
             if (h >= Long.parseLong(args[1])) {
+                // check if positive
+                if (Long.parseLong(args[1]) < 0) {
+                    player.sendMessage(DIALOG + ChatColor.RED + "You cannot give negative time!");
+                    return true;
+                }
                 subtractTime(player, Long.parseLong(args[1]));
                 addTime(target, Long.parseLong(args[1]));
                 player.sendMessage(DIALOG + ChatColor.GREEN + "You have given " + target.getName() + " " + args[1] + " hours of time!");
