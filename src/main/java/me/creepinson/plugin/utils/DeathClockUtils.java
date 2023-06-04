@@ -12,8 +12,9 @@ import java.time.temporal.ChronoUnit;
 
 public class DeathClockUtils {
 
-    private static NamespacedKey key = new NamespacedKey(JavaPlugin.getProvidingPlugin(Main.class), "death_clock");
-    private static NamespacedKey pause = new NamespacedKey(JavaPlugin.getProvidingPlugin(Main.class), "pausekey");
+    private static final NamespacedKey key = new NamespacedKey(JavaPlugin.getProvidingPlugin(Main.class), "death_clock");
+    private static final NamespacedKey pause = new NamespacedKey(JavaPlugin.getProvidingPlugin(Main.class), "pausekey");
+
     public static boolean hasExpired(Player player) {
 
         Instant expired = Instant.ofEpochMilli(player.getPersistentDataContainer().get(key, PersistentDataType.LONG));
@@ -60,11 +61,13 @@ public class DeathClockUtils {
         Instant expires = Instant.ofEpochMilli(pdc.getOrDefault(key, PersistentDataType.LONG, Instant.now().toEpochMilli()));
         return expires;
     }
+
     public static void pauseTime(Player player) {
 
         PersistentDataContainer pdc = player.getPersistentDataContainer();
         pdc.set(pause, PersistentDataType.LONG, Instant.now().toEpochMilli());
     }
+
     public static void resumeTime(Player player) {
 
         //to unpause you read the value under "pause" then set key to key + (Instant.now() - pause)

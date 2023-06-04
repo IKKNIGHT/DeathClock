@@ -1,6 +1,5 @@
 package me.creepinson.plugin.command;
 
-import me.creepinson.plugin.Main;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,7 +7,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
-import static me.creepinson.plugin.Main.CHAT_PREFIX;
 import static me.creepinson.plugin.Main.DIALOG;
 
 // All command classes need to implement the CommandExecutor interface to be a proper command!
