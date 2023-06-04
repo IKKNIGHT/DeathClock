@@ -1,7 +1,7 @@
 main: me.creepinson.plugin.Main
 name: DeathClock
 author: IK_Knight, ElgarL
-version: 1.0.1
+version: 1.0.0
 api-version: 1.19
 commands:
   status:
