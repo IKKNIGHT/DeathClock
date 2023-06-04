@@ -34,7 +34,7 @@ public class GiveTime implements CommandExecutor {
             Player target = player.getServer().getPlayer(args[0]);
             // player dose not have to be online
             if (target == null) {
-                player.sendMessage(DIALOG + ChatColor.RED + "Player not found!");
+                player.sendMessage(DIALOG + ChatColor.RED + "Player not found! They Have to be online to give them time!");
                 return true;
             }
             Long Frt = Instant.now().until(getTime(player), ChronoUnit.MILLIS);
@@ -44,6 +44,11 @@ public class GiveTime implements CommandExecutor {
                 addTime(target, Long.parseLong(args[1]));
                 player.sendMessage(DIALOG + ChatColor.GREEN + "You have given " + target.getName() + " " + args[1] + " hours of time!");
                 target.sendMessage(DIALOG + ChatColor.GREEN + "You have been given " + args[1] + " hours of time by " + player.getName());
+                if (!hasExpired(target)) { // if the player has time left, set their gamemode to survival and remove blindness
+                    target.setGameMode(org.bukkit.GameMode.SURVIVAL);
+                    target.removePotionEffect(org.bukkit.potion.PotionEffectType.BLINDNESS);
+                    return true;
+                }
                 return true;
             } else {
                 player.sendMessage(DIALOG + ChatColor.RED + "You do not have enough time to give!");

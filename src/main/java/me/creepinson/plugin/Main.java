@@ -8,9 +8,7 @@ import me.creepinson.plugin.listener.PlayerJoined;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.BanList;
 import org.bukkit.Bukkit;
-import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
@@ -42,14 +40,14 @@ public class Main extends JavaPlugin {
 
     PluginDescriptionFile pdfFile; // plugin.yml
 
+    public static Main getPlugin() { // getter for the static plugin instance
+        return plugin;
+    }
+
     public void onDisable() {
         plugin = getPlugin(Main.class);
         this.pdfFile = getDescription();
 
-    }
-
-    public static Main getPlugin() { // getter for the static plugin instance
-        return plugin;
     }
 
     public PluginDescriptionFile getPdfFile() {
@@ -67,7 +65,6 @@ public class Main extends JavaPlugin {
         //create a voidless worldcreator
 
         // create another world which is voidless
-
 
 
         this.getCommand("givetime").setExecutor(new GiveTime());
@@ -98,9 +95,9 @@ public class Main extends JavaPlugin {
                 //The code inside will be executed in {timeInTicks} ticks.
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     if (hasExpired(p)) {
-                        // put players in another world
-
-                        Bukkit.getBanList(BanList.Type.NAME).addBan(String.valueOf(p.getUniqueId()), "Clock Ran Out", null, null);
+                        p.kickPlayer("Your time has expired! DO NOT LOG ON UNLESS SOMEONE IS GOING TO GIVE YOU TIME!!! OTHER WISE YOUR TIME WILL KEEP ON DECREASING!!!!");
+                        p.setGameMode(org.bukkit.GameMode.SPECTATOR);
+                        p.addPotionEffect(new org.bukkit.potion.PotionEffect(org.bukkit.potion.PotionEffectType.BLINDNESS, 1000000, 1000000));
                     }
                     // set actionbar
                     Long Frt = Instant.now().until(getTime(p), ChronoUnit.MILLIS);
